@@ -1,6 +1,8 @@
+import { API_URL } from '../global/headers.js';
+
 export async function deleteMovie(id) {
     try {
-        const res = await fetch(`http://localhost:3000/movies/${id}`, {
+        const res = await fetch(`${API_URL}/movies/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

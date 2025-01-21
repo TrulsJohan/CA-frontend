@@ -1,3 +1,5 @@
+import { API_URL } from '../global/headers.js';
+
 export async function addMovie() {
     const title = document.getElementById('title').value;
     const description = document.getElementById('description').value;
@@ -11,7 +13,7 @@ export async function addMovie() {
         throw new Error('Could not find user ID');
     }
     try {
-        const res = await fetch(`http://localhost:3000/movies/user/${userId}`, {
+        const res = await fetch(`${API_URL}/movies/user/${userId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

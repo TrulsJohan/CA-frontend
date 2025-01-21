@@ -1,10 +1,12 @@
+import { API_URL } from '../global/headers.js';
+
 export async function getMovieId() {
     try {
         const userId = localStorage.getItem('user_id');
         if (!userId) {
             throw new Error('Could not find user_id in localStorage.');
         }
-        const res = await fetch(`http://localhost:3000/movies/user/${userId}`, {
+        const res = await fetch(`${API_URL}/movies/user/${userId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

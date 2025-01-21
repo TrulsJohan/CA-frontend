@@ -1,6 +1,8 @@
+import { API_URL } from '../global/headers.js';
+
 export async function getMovies() {
     try {
-        const res = await fetch('http://localhost:3000/movies', {
+        const res = await fetch(`${API_URL}/movies`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

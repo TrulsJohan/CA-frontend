@@ -1,3 +1,5 @@
+import { API_URL } from '../../global/headers.js';
+
 let title = document.getElementById('title');
 let description = document.getElementById('description');
 let img_url = document.getElementById('img_url');
@@ -9,7 +11,7 @@ async function getSelectedMovie() {
         return;
     }
     try {
-        const res = await fetch(`http://localhost:3000/movies/${movie_id}`, {
+        const res = await fetch(`${API_URL}/${movie_id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -47,7 +49,7 @@ async function updateMovie() {
 
     try {
         const res = await fetch(
-            `http://localhost:3000/movies/update/${movie_id}/${user_id}`,
+            `${API_URL}/movies/update/${movie_id}/${user_id}`,
             {
                 method: 'PUT',
                 headers: {
