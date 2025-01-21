@@ -1,11 +1,11 @@
-import { getMovies } from "../../api/home.js";
+import { getMovieId } from "../../api/profile.js";
 import { deleteMovie } from '../../api/delete.js';
 
 const moviesContainer = document.getElementById('moviesContainer');
 
-async function displayMovies() {
+async function displayMovie() {
     try {
-        const data = await getMovies();
+        const data = await getMovieId();
         if (!data || !data.data || data.data.length === 0) {
             throw new Error('No movies found');
         }
@@ -18,9 +18,9 @@ async function displayMovies() {
                     <h3>${movie.title}</h3>
                     <p>${movie.description}</p>
                     <img src="${movie.img_url}" alt="${movie.title}" style="width: 100px; height: 100px;"/>
+                    <p>Posted by: ${movie.username}</p>
                     <button class="deleteBtn" data-id="${movie.id}">Delete Movie</button>
                     <button class="editBtn" data-id="${movie.id}">Edit Movie</button>
-                </div>
             `;
             })
             .join('');
@@ -55,4 +55,4 @@ async function displayMovies() {
     }
 }
 
-displayMovies();
+displayMovie();
