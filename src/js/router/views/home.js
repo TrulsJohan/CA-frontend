@@ -44,7 +44,7 @@ async function displayMovies() {
                 const id = button.getAttribute('data-id');
                 if (id) {
                     localStorage.setItem('movie_id', id);
-                    window.location.href = './edit.html';
+                    window.location.href = '../../../../post/update/index.html';
                 } else {
                     console.error('Movie ID not found.');
                 }

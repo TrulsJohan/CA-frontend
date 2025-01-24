@@ -1,8 +1,8 @@
 import { API_URL } from '../../global/headers.js';
 
-let title = document.getElementById('title');
-let description = document.getElementById('description');
-let img_url = document.getElementById('img_url');
+const title = document.getElementById('title');
+const description = document.getElementById('description');
+const img_url = document.getElementById('img_url');
 
 async function getSelectedMovie() {
     const movie_id = localStorage.getItem('movie_id');
@@ -10,24 +10,27 @@ async function getSelectedMovie() {
         console.error('Movie ID not found in localStorage.');
         return;
     }
+
     try {
-        const res = await fetch(`${API_URL}/${movie_id}`, {
+        const res = await fetch(`${API_URL}/movies/${movie_id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
         });
+
         if (!res.ok) {
             throw new Error(
-                `Failed to fetch movie with ID ${movie_id}: ${res.status}`
+                `Failed to fetch movie (ID: ${movie_id}): ${res.status} ${res.statusText}`
             );
         }
-        const data = await res.json();
+
+        const { data } = await res.json();
         console.log(data);
-        title.value = data.data.title;
-        description.value = data.data.description;
-        img_url.value = data.data.img_url;
+        title.value = data.title;
+        description.value = data.description;
+        img_url.value = data.img_url;
     } catch (error) {
         console.error('Error fetching movie:', error);
     }
@@ -36,6 +39,7 @@ async function getSelectedMovie() {
 async function updateMovie() {
     const movie_id = localStorage.getItem('movie_id');
     const user_id = localStorage.getItem('user_id');
+
     if (!movie_id || !user_id) {
         console.error('Movie ID or User ID not found in localStorage.');
         return;
@@ -62,7 +66,7 @@ async function updateMovie() {
 
         if (!res.ok) {
             throw new Error(
-                `Failed to update movie with ID ${movie_id}: ${res.status}`
+                `Failed to update movie (ID: ${movie_id}): ${res.status} ${res.statusText}`
             );
         }
 
