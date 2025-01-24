@@ -1,4 +1,4 @@
-import { API_URL } from '../global/headers.js';
+import { API_URL } from "../global/headers";
 
 export async function login() {
     try {
