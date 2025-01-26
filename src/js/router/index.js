@@ -2,25 +2,25 @@ export default async function router(pathname = window.location.pathname) {
     try {
         switch (pathname) {
             case '/index.html':
-                await import('../views/home.js');
+                await import('../js/views/home.js');
                 break;
             case '/auth/register/index.html':
-                await import('../views/register.js');
+                await import('../js/views/register.js');
                 break;
             case '/auth/login/index.html':
-                await import('../views/login.js');
+                await import('../js/views/login.js');
                 break;
             case '/profile/index.html':
-                await import('../views/profile.js');
+                await import('../js/views/profile.js');
                 break;
             case '/post/create/index.html':
-                await import('../views/create.js');
+                await import('../js/views/create.js');
                 break;
             case '/post/update/index.html':
-                await import('../views/update.js');
+                await import('../js/views/update.js');
                 break;
             default:
-                await import('../views/notFound.js');
+                await import('../js/views/notFound.js'); // Adjusted path
         }
     } catch (error) {
         console.error(`Error loading module for ${pathname}:`, error);
