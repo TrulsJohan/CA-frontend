@@ -1,4 +1,4 @@
-import { API_URL } from "../global/headers.js";
+const API_URL = 'https://ca-databases.onrender.com';
 
 export async function register() {
     try {
@@ -23,7 +23,7 @@ export async function register() {
     }
 }
 
-document.getElementById('registrationForm').addEventListener('submit', (event)=> {
+document.getElementById('registrationForm').addEventListener('submit', (event) => {
     event.preventDefault();
     register();
 });

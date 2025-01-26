@@ -1,5 +1,5 @@
-import { deleteMovie } from '../../api/delete.js';
-import { API_URL } from '../global/headers.js';
+const API_URL = 'https://ca-databases.onrender.com';
+const moviesContainer = document.getElementById('moviesContainer');
 
 export async function getMovies() {
     try {
@@ -20,7 +20,26 @@ export async function getMovies() {
     }
 }
 
-const moviesContainer = document.getElementById('moviesContainer');
+export async function deleteMovie(id) {
+    try {
+        const res = await fetch(`${API_URL}/movies/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        });
+        if (!res.ok) {
+            throw new Error(
+                `Failed to delete movie: ${res.status} ${res.statusText}`
+            );
+        }
+        const data = await res.json();
+        console.log('Movie deleted successfully:', data);
+    } catch (error) {
+        console.error('Error deleting movie:', error);
+    }
+}
 
 async function displayMovies() {
     try {
